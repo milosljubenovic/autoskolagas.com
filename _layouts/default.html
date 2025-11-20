@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="sr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ page.title }} - {{ site.title }}</title>
+    <meta name="description" content="{{ site.description }}">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#3b82f6',
+                        'dark-bg': '#0a0a0a',
+                        'dark-card': '#1a1a1a',
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        html {
+            scroll-behavior: smooth;
+        }
+        
+        /* Light theme variables */
+        body.light-mode {
+            --bg-dark: #ffffff;
+            --bg-card: #f3f4f6;
+            --text-primary: #111827;
+            --text-secondary: #4b5563;
+            --border-color: #e5e7eb;
+            background-color: #ffffff;
+            color: #111827;
+        }
+        
+        body.light-mode .bg-dark-bg { background-color: #ffffff !important; }
+        body.light-mode .bg-dark-card { background-color: #f3f4f6 !important; }
+        body.light-mode .bg-gray-900 { background-color: #e5e7eb !important; }
+        body.light-mode .bg-gray-800 { background-color: #f3f4f6 !important; }
+        body.light-mode .text-white { color: #111827 !important; }
+        body.light-mode .text-gray-300 { color: #4b5563 !important; }
+        body.light-mode .text-gray-400 { color: #6b7280 !important; }
+        body.light-mode .text-gray-500 { color: #9ca3af !important; }
+        body.light-mode .border-gray-800 { border-color: #e5e7eb !important; }
+        body.light-mode .border-gray-700 { border-color: #d1d5db !important; }
+        body.light-mode .hover\:bg-gray-800:hover { background-color: #e5e7eb !important; }
+        body.light-mode .hover\:text-white:hover { color: #111827 !important; }
+        body.light-mode .hover\:border-gray-700:hover { border-color: #d1d5db !important; }
+        
+        /* Gradient fixes for light mode */
+        body.light-mode .bg-gradient-to-br { background-image: linear-gradient(to bottom right, #f9fafb, #e5e7eb) !important; }
+        body.light-mode .bg-gradient-to-b { background-image: linear-gradient(to bottom, #ffffff, #f3f4f6) !important; }
+    </style>
+    {% seo %}
+</head>
+<body class="font-sans antialiased bg-dark-bg text-white">
+    <header class="bg-dark-bg border-b border-gray-800 sticky top-0 z-50">
+        <nav class="container mx-auto px-4 py-4">
+            <div class="flex justify-between items-center">
+                <div class="flex items-center space-x-3">
+                    <a href="/" class="flex items-center space-x-3">
+                        <img src="/assets/logo.jpg" alt="Auto Škola GAS Logo" class="w-10 h-10 rounded-full object-cover border border-gray-700">
+                        <span class="text-xl font-bold text-white">{{ site.title }}</span>
+                    </a>
+                </div>
+                <ul class="hidden md:flex space-x-8 text-sm">
+                    <li><a href="/#home" class="text-gray-300 hover:text-white transition">Početak</a></li>
+                    <li><a href="/#services" class="text-gray-300 hover:text-white transition">Usluge</a></li>
+                    <li><a href="/#benefits" class="text-gray-300 hover:text-white transition">Benefiti</a></li>
+                    <li><a href="/#team" class="text-gray-300 hover:text-white transition">Tim</a></li>
+                    <li><a href="/#fleet" class="text-gray-300 hover:text-white transition">Vozni park</a></li>
+                    <li><a href="/#pricing" class="text-gray-300 hover:text-white transition">Cenovnici</a></li>
+                    <li><a href="/#faq" class="text-gray-300 hover:text-white transition">FAQ</a></li>
+                    <li><a href="/#contact" class="text-gray-300 hover:text-white transition">Kontakt</a></li>
+                </ul>
+                <div class="flex items-center space-x-4">
+                    <button id="theme-toggle" class="text-gray-400 hover:text-white transition" title="Toggle Day/Night Mode">
+                        <svg id="theme-icon-sun" class="w-5 h-5 hidden" fill="currentColor" viewBox="0 0 20 20">
+                            <path fill-rule="evenodd" d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z" clip-rule="evenodd"/>
+                        </svg>
+                        <svg id="theme-icon-moon" class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+                            <path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"/>
+                        </svg>
+                    </button>
+                    <button id="mobile-menu-button" class="md:hidden text-gray-300">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+            <div id="mobile-menu" class="hidden md:hidden mt-4 space-y-2">
+                <a href="/#home" class="block py-2 text-gray-300 hover:text-white">Početak</a>
+                <a href="/#services" class="block py-2 text-gray-300 hover:text-white">Usluge</a>
+                <a href="/#benefits" class="block py-2 text-gray-300 hover:text-white">Benefiti</a>
+                <a href="/#team" class="block py-2 text-gray-300 hover:text-white">Tim</a>
+                <a href="/#fleet" class="block py-2 text-gray-300 hover:text-white">Vozni park</a>
+                <a href="/#pricing" class="block py-2 text-gray-300 hover:text-white">Cenovnici</a>
+                <a href="/#faq" class="block py-2 text-gray-300 hover:text-white">FAQ</a>
+                <a href="/#contact" class="block py-2 text-gray-300 hover:text-white">Kontakt</a>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        {{ content }}
+    </main>
+
+    <footer class="bg-dark-bg border-t border-gray-800 py-12 mt-16">
+        <div class="container mx-auto px-4">
+            <div class="grid md:grid-cols-3 gap-8">
+                <div>
+                    <h3 class="text-xl font-bold mb-4">{{ site.title }}</h3>
+                    <p class="text-gray-400 mb-4">Profesionalna obuka za bezbedne i samopouzdane vozače.</p>
+                    <div class="flex space-x-4">
+                        <a href="https://www.instagram.com/autoskolagas25/" target="_blank" rel="noopener noreferrer" class="text-gray-400 hover:text-primary transition" title="Instagram">
+                            <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
+                            </svg>
+                        </a>
+                        <a href="https://www.tiktok.com/@autoskolagas" target="_blank" rel="noopener noreferrer" class="text-gray-400 hover:text-primary transition" title="TikTok">
+                            <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M19.59 6.69a4.83 4.83 0 01-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 01-5.2 1.74 2.89 2.89 0 012.31-4.64 2.93 2.93 0 01.88.13V9.4a6.84 6.84 0 00-1-.05A6.33 6.33 0 005 20.1a6.34 6.34 0 0010.86-4.43v-7a8.16 8.16 0 004.77 1.52v-3.4a4.85 4.85 0 01-1-.1z"/>
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+                <div>
+                    <h3 class="text-xl font-bold mb-4">Brzi linkovi</h3>
+                    <ul class="space-y-2">
+                        <li><a href="/#home" class="text-gray-400 hover:text-white transition">Početna</a></li>
+                        <li><a href="/#team" class="text-gray-400 hover:text-white transition">O nama</a></li>
+                        <li><a href="/#services" class="text-gray-400 hover:text-white transition">Usluge</a></li>
+                        <li><a href="/#contact" class="text-gray-400 hover:text-white transition">Kontakt</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h3 class="text-xl font-bold mb-4">Kontakt informacije</h3>
+                    <p class="text-gray-400 mb-2">Telefon: <a href="tel:+381629282375" class="hover:text-white transition">062 92 82 375</a></p>
+                    <p class="text-gray-400 mb-2">Email: <a href="mailto:{{ site.email }}" class="hover:text-white transition">{{ site.email }}</a></p>
+                    <p class="text-gray-400">Adresa: Vojvode Mišića 40A, 18000 Niš</p>
+                </div>
+            </div>
+            <div class="border-t border-gray-800 mt-8 pt-8 text-center text-gray-500 text-sm">
+                <p>&copy; {{ 'now' | date: "%Y" }} {{ site.title }}. Sva prava zadržana.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile menu toggle
+        const mobileMenuButton = document.getElementById('mobile-menu-button');
+        const mobileMenu = document.getElementById('mobile-menu');
+        
+        mobileMenuButton.addEventListener('click', function() {
+            mobileMenu.classList.toggle('hidden');
+        });
+        
+        // Close mobile menu when clicking a link
+        const mobileLinks = mobileMenu.querySelectorAll('a');
+        mobileLinks.forEach(link => {
+            link.addEventListener('click', function() {
+                mobileMenu.classList.add('hidden');
+            });
+        });
+        
+        // Theme toggle functionality
+        const themeToggle = document.getElementById('theme-toggle');
+        const themeIconSun = document.getElementById('theme-icon-sun');
+        const themeIconMoon = document.getElementById('theme-icon-moon');
+        const body = document.body;
+        
+        // Check for saved theme preference or default to dark
+        const currentTheme = localStorage.getItem('theme') || 'dark';
+        if (currentTheme === 'light') {
+            body.classList.add('light-mode');
+            themeIconSun.classList.remove('hidden');
+            themeIconMoon.classList.add('hidden');
+        }
+        
+        themeToggle.addEventListener('click', function() {
+            body.classList.toggle('light-mode');
+            
+            if (body.classList.contains('light-mode')) {
+                localStorage.setItem('theme', 'light');
+                themeIconSun.classList.remove('hidden');
+                themeIconMoon.classList.add('hidden');
+            } else {
+                localStorage.setItem('theme', 'dark');
+                themeIconSun.classList.add('hidden');
+                themeIconMoon.classList.remove('hidden');
+            }
+        });
+    </script>
+</body>
+</html>
