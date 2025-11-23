@@ -1,1 +1,61 @@
-test
+# Pages CMS configuration for Auto Škola GAS
+media: assets
+
+content:
+  # Main pages collection
+  - name: pages
+    label: Stranice
+    type: collection
+    path: ''
+    extension: html
+    view:
+      fields: [title, permalink]
+    fields:
+      - name: layout
+        label: Layout
+        type: string
+        default: default
+      - name: title
+        label: Naslov
+        type: string
+      - name: permalink
+        label: Permalink
+        type: string
+        description: URL putanja (npr. /about.html)
+      - name: body
+        label: Sadržaj
+        type: rich-text
+
+  # Jekyll configuration
+  - name: config
+    label: Podešavanja sajta
+    path: _config.yml
+    type: file
+    fields:
+      - name: title
+        label: Naziv sajta
+        type: string
+      - name: email
+        label: Email
+        type: string
+        pattern: ^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$
+      - name: description
+        label: Opis sajta
+        type: text
+        description: Kratki opis sajta koji se koristi za SEO
+      - name: baseurl
+        label: Base URL
+        type: string
+        description: Podputanja sajta (obično prazno za root domene)
+      - name: url
+        label: URL sajta
+        type: string
+        pattern: ^(https?:\/\/)?(www\.)?[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}(\/[^\s]*)?$
+      - name: markdown
+        label: Markdown procesor
+        type: string
+        default: kramdown
+      - name: theme
+        label: Jekyll tema
+        type: string
+        default: minima
